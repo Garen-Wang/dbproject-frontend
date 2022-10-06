@@ -69,6 +69,7 @@ B: Serialize,
     request(Method::PUT, url, body).await
 }
 
+#[allow(dead_code)]
 pub async fn request_delete<T: DeserializeOwned>(url: String) -> Result<T, MyError> {
     request(Method::DELETE, url, ()).await
 }

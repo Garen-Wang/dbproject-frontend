@@ -26,7 +26,7 @@ pub struct RegisterInfoWrapper {
 pub struct UserInfo {
     username: String,
     email: String,
-    token: String,
+    pub token: String,
     bio: Option<String>,
     img: Option<String>,
 }
