@@ -1,25 +1,41 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
+use yew::prelude::*;
 
-
-#[derive(Serialize)]
+#[derive(Serialize, Default, Clone)]
 pub struct LoginInfo {
-    email: String,
-    password: String,
+    pub email: String,
+    pub password: String,
 }
 #[derive(Serialize)]
 pub struct LoginInfoWrapper {
     inner: LoginInfo,
 }
+impl From<UseStateHandle<LoginInfo>> for LoginInfoWrapper {
+    fn from(info: UseStateHandle<LoginInfo>) -> Self {
+        let inner = &*info;
+        Self {
+            inner: inner.clone(),
+        }
+    }
+}
 
-#[derive(Serialize)]
+#[derive(Serialize, Default, Clone)]
 pub struct RegisterInfo {
-    username: String,
-    email: String,
-    password: String,
+    pub username: String,
+    pub email: String,
+    pub password: String,
 }
 #[derive(Serialize)]
 pub struct RegisterInfoWrapper {
     inner: RegisterInfo,
+}
+impl From<UseStateHandle<RegisterInfo>> for RegisterInfoWrapper {
+    fn from(info: UseStateHandle<RegisterInfo>) -> Self {
+        let inner = &*info;
+        Self {
+            inner: inner.clone(),
+        }
+    }
 }
 
 #[derive(Clone, PartialEq, Deserialize, Default)]

@@ -2,6 +2,9 @@ use thiserror::Error;
 
 #[derive(Debug, Clone, PartialEq, Error)]
 pub enum MyError {
+    #[error("Bad Request")]
+    BadRequest, // 400
+
     #[error("Unauthorized")]
     Unauthorized, // 401
 

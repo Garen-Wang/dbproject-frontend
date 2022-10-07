@@ -11,6 +11,7 @@ T: DeserializeOwned,
 B: Serialize,
 {
     let have_body = method == Method::POST || method == Method::PUT;
+    let url = format!("{}{}", "http://localhost:7878", url);
     let mut builder = reqwest::Client::new()
         .request(method, url)
         .header("Content-Type", "application/json");
@@ -34,6 +35,7 @@ B: Serialize,
             }
         } else {
             match response.status().as_u16() {
+                400 => Err(MyError::BadRequest),
                 401 => Err(MyError::Unauthorized),
                 403 => Err(MyError::Forbidden),
                 404 => Err(MyError::NotFound),
@@ -61,6 +63,7 @@ B: Serialize,
     request(Method::POST, url, body).await
 }
 
+#[allow(dead_code)]
 pub async fn request_put<T, B>(url: String, body: B) -> Result<T, MyError>
 where
 T: DeserializeOwned,
