@@ -24,7 +24,7 @@ pub fn user_context_provider(props: &Props) -> Html {
         let user_context = user_context.clone();
         use_effect_with_deps(move |user_info| {
             if let Some(user_info) = &user_info.data {
-                user_context.set(user_info.inner.clone());
+                user_context.set(user_info.clone());
             }
             if let Some(error) = &user_info.error {
                 match error {

@@ -19,7 +19,10 @@ pub fn register() -> Html {
     use_effect_with_deps(
         move |user_register| {
             if let Some(data) = &user_register.data {
-                user_context.login(data.inner.clone());
+                user_context.login(data.clone());
+            }
+            if let Some(error) = &user_register.error {
+                log::error!("{:?}", error);
             }
             || ()
         },

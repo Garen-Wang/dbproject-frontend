@@ -40,31 +40,13 @@ impl From<UseStateHandle<RegisterInfo>> for RegisterInfoWrapper {
 
 #[derive(Clone, PartialEq, Deserialize, Default)]
 pub struct UserInfo {
-    username: String,
-    email: String,
-    pub token: String,
-    bio: Option<String>,
-    img: Option<String>,
-}
-#[derive(Clone, PartialEq, Deserialize)]
-pub struct UserInfoWrapper {
-    pub inner: UserInfo,
-}
-impl UserInfo {
-    pub fn is_authenticated(&self) -> bool {
-        !self.token.is_empty()
-    }
+    pub id: String,
+    pub username: String,
+    pub email: String,
 }
 
-#[derive(Serialize)]
-pub struct UserUpdateInfo {
-    username: String,
-    email: String,
-    password: String,
-    bio: Option<String>,
-    img: Option<String>,
-}
-#[derive(Serialize)]
-pub struct UserUpdateInfoWrapper {
-    inner: UserUpdateInfo,
+#[derive(Clone, Serialize, Default)]
+pub struct UpdateInfo {
+    pub username: Option<String>,
+    pub password: Option<String>,
 }

@@ -16,8 +16,11 @@ pub fn login() -> Html {
     };
     use_effect_with_deps(
         move |user_login| {
-            if let Some(user_info_wrapper) = &user_login.data {
-                user_context.login(user_info_wrapper.inner.clone());
+            if let Some(data) = &user_login.data {
+                user_context.login(data.clone());
+            }
+            if let Some(error) = &user_login.error {
+                log::error!("{:?}", error);
             }
             || ()
         },
@@ -46,6 +49,7 @@ pub fn login() -> Html {
     let onsubmit = {
         let user_login = user_login.clone();
         Callback::from(move |e: FocusEvent| {
+            log::debug!("login onsubmit callback");
             e.prevent_default();
             user_login.run();
         })

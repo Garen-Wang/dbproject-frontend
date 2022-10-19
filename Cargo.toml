@@ -23,6 +23,7 @@ yew = "0.19.3"
 yew-router = "0.16.0"
 yew-hooks = "0.1.56"
 wasm-bindgen = "0.2.83"
+wasm-bindgen-futures = "0.4.33"
 wasm-logger = "0.2.0"
 wee_alloc = "0.4.5"
 
@@ -35,4 +36,14 @@ features = [
   "Window",
   "HtmlCollection",
   "HtmlInputElement",
+  "HtmlAudioElement",
+]
+
+[dependencies.yew_icons]
+version = "0.5"
+features = [
+  "LucideArrowLeftCircle",
+  "LucideArrowLeftCircle",
+  "LucidePlay",
+  "LucidePause",
 ]

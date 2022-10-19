@@ -7,8 +7,10 @@ const TOKEN_KEY: &str = "yew.token";
 lazy_static! {
     static ref TOKEN: RwLock<Option<String>> = {
         if let Ok(token) = LocalStorage::get(TOKEN_KEY) {
+            log::debug!("init TOKEN with some: {}", token);
             RwLock::new(Some(token))
         } else {
+            log::debug!("init TOKEN with none");
             RwLock::new(None)
         }
     };
