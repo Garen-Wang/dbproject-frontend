@@ -25,10 +25,10 @@ pub fn audio_player() -> Html {
             let audio = audio_ref.cast::<HtmlAudioElement>().unwrap();
             if prev_state {
                 log::debug!("pause");
-                audio.pause();
+                audio.pause().unwrap();
             } else {
                 log::debug!("play");
-                audio.play();
+                audio.play().unwrap();
             }
         })
     };
